@@ -1,4 +1,6 @@
 # Документация
+Ссылка на сервер: https://github.com/korhenon/congenial-spoon.git
+***
 **GET** /public/:id+.png *Аватарки пользователей*
 ***
 **POST** /login {email: String, password: String} *Вход в аккаунт*
