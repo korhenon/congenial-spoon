@@ -1,7 +1,9 @@
 const {ServerState} = require("./state.js")
 const express = require("express")
 const fileUpload = require('express-fileupload')
-
+const dotenv = require("dotenv")
+dotenv.config()
+const serverUrl = process.env.SERVER_URL || ""
 const app = express()
 const port = 3000
 const state = new ServerState()
@@ -29,7 +31,7 @@ app.get("/user/:email", (req, res) => {
                 firstName: user.firstName,
                 secondName: user.secondName,
                 email: user.email,
-                image: user.image
+                image: serverUrl + user.image
             })
         }
     }
@@ -46,7 +48,7 @@ app.post("/register", (req, res) => {
         password: password,
         firstName: firstName,
         secondName: secondName,
-        image: "/public/animals/капибара.jpg"
+        image: serverUrl + "/public/animals/капибара.jpg"
     })
     res.send(200)
 })
@@ -83,7 +85,7 @@ app.get("/animal/:email", (req, res) => {
     for (let user of state.users) {
         if (user.email === email) {
             state.users[user.id].gtaProgress += 1
-            res.send({image: state.guessTheAnimal.at(user.gtaProgress - 1)})
+            res.send({image: serverUrl + state.guessTheAnimal.at(user.gtaProgress - 1)})
         }
     }
 })
@@ -153,5 +155,5 @@ app.post('/upload/:email', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log("Started!")
+    console.log("Started! " + serverUrl)
 })
