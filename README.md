@@ -3,6 +3,8 @@
 ***
 **POST** /login {email: String, password: String} *Вход в аккаунт*
 ***
+**GET** /user/:email *Получить информацию о пользователе*
+***
 **POST** /register {email: String, password: String, firstName: String, secondName: String} *Регистрация пользователя*
 ***
 **GET** /user-top *Топ пользователей*

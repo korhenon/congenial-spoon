@@ -14,7 +14,23 @@ app.post("/login", (req, res) => {
     const {email, password} = req.body
     for (let user of state.users) {
         if (user.email === email && user.password === password) {
-            res.send({image: "/public/" + user.image})
+            res.sendStatus(200)
+        }
+    }
+    res.send(400)
+})
+
+app.get("/user/:email", (req, res) => {
+    const {email} = req.params
+
+    for (let user of state.users) {
+        if (user.email === email) {
+            res.send({
+                firstName: user.firstName,
+                secondName: user.secondName,
+                email: user.email,
+                image: user.image
+            })
         }
     }
     res.send({})
@@ -137,6 +153,5 @@ app.post('/upload/:email', (req, res) => {
 });
 
 app.listen(port, () => {
-
     console.log("Started!")
 })
