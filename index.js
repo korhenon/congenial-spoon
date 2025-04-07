@@ -54,7 +54,7 @@ app.post("/register", (req, res) => {
 })
 
 app.get("/user-top", (req, res) => {
-    res.send(state.users.sort((a, b) => {
+    res.send(state.users.slice().sort((a, b) => {
         if (a.points < b.points) return 1
         else if (a.points > b.points) return -1
         else return 0
@@ -96,7 +96,7 @@ app.get("/word-practice/:email", (req, res) => {
 
     for (let user of state.users) {
         if (user.email === email) {
-            state.users[user.id].wpProgress += 1
+            state.users[user.id].wpProgress = state.users[user.id].wpProgress + 1
             res.send(state.wordPractice.at(user.wpProgress - 1))
         }
     }
