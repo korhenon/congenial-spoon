@@ -148,7 +148,7 @@ app.post('/upload/:email', (req, res) => {
     if (!image) return res.sendStatus(400);
     for (let user of state.users) {
         if (user.email === email) {
-            state.users[user.id].image = user.id + ".png"
+            state.users[user.id].image = '/public/' + user.id + ".png"
             image.mv(__dirname + '/public/' + user.id + ".png");
             res.sendStatus(200);
         }
