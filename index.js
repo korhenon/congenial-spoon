@@ -63,7 +63,8 @@ app.get("/user-top", (req, res) => {
             firstName: obj.firstName,
             secondName: obj.secondName,
             points: obj.points,
-            image: serverUrl + obj.image
+            image: serverUrl + obj.image,
+            email: obj.email
         }
     }))
 })
